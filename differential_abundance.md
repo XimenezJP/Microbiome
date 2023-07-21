@@ -60,21 +60,6 @@ ntaxa(kosticPrevFilt)
 
 In this example I’m using the major sample covariate, DIAGNOSIS, as the study design factor. The focus of this study was to compare the microbiomes of pairs of healthy and cancerous tissues, so this makes sense. Your study could have a more complex or nested design, and you should think carefully about the study design formula, because this is critical to the test results and their meaning. You might even need to define a new factor if none of the variables in your current table appropriately represent your study’s design.
 
-```r
-kostic
-```
-
-```r
-head(sample_data(kostic)$DIAGNOSIS, 25)
-```
-Unfortunately, the diagnosis variable has a third placeholder class indicating that no diagnosis was given ("None"). For the purposes of testing, these samples will be removed.
-
-Remove samples with no diagnosis.
-
-```r
-kostic <- subset_samples(kostic, DIAGNOSIS != "None")
-ntaxa(kostic)
-```
 First load DESeq2.
 
 ```r
