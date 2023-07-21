@@ -41,6 +41,21 @@ Cleanup sample names
 ```r
 sample_names(kostic) <- sample_names(kostic) %>% paste0("sa_", .)
 ```
+
+Remove OTUs that only appeared in those samples
+
+```r
+kostic <- filter_taxa(kostic, function(x){sum(x) > 0}, prune = TRUE)
+ntaxa(kostic)
+```
+
+Require a prevalence threshold
+
+```r
+kosticPrevFilt <- filter_taxa(kostic, function(x){sum(x > 0) > 2}, prune = TRUE)
+ntaxa(kosticPrevFilt)
+```
+
 ## DESeq2
 
 In this example I’m using the major sample covariate, DIAGNOSIS, as the study design factor. The focus of this study was to compare the microbiomes of pairs of healthy and cancerous tissues, so this makes sense. Your study could have a more complex or nested design, and you should think carefully about the study design formula, because this is critical to the test results and their meaning. You might even need to define a new factor if none of the variables in your current table appropriately represent your study’s design.
