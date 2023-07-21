@@ -41,6 +41,20 @@ Cleanup sample names
 ```r
 sample_names(kostic) <- sample_names(kostic) %>% paste0("sa_", .)
 ```
+```r
+kostic
+```
+
+```r
+head(sample_data(kostic)$DIAGNOSIS, 25)
+```
+
+Remove samples with no diagnosis
+
+```r
+kostic <- subset_samples(kostic, DIAGNOSIS != "None")
+ntaxa(kostic)
+```
 
 Remove OTUs that only appeared in those samples
 
